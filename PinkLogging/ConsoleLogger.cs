@@ -26,14 +26,15 @@ namespace PinkLogging
                 _ => null
             };
 
-            var header = $"[{method.DeclaringType.Name}.{method.Name} {frame.GetFileLineNumber()}:{frame.GetFileColumnNumber()} ";
-            var headerLength = header.Length + levelName.Length + 1;
+            var headerBegin = $"[{method.DeclaringType.Name}.{method.Name} {frame.GetFileLineNumber()}:{frame.GetFileColumnNumber()} ";
+            var headerEnd = "] ";
+            var headerLength = headerBegin.Length + levelName.Length + headerEnd.Length;
 
             _dispatcher.Post((state) =>
             {
                 var foregroundColor = Console.ForegroundColor;
 
-                Console.Write(header);
+                Console.Write(headerBegin);
 
                 if (levelColor.HasValue)
                     Console.ForegroundColor = levelColor.Value;
@@ -43,7 +44,7 @@ namespace PinkLogging
                 if (levelColor.HasValue)
                     Console.ForegroundColor = foregroundColor;
 
-                Console.Write("] ");
+                Console.Write(headerEnd);
 
                 if (message != null)
                     Console.WriteLine(message
