@@ -26,7 +26,12 @@ namespace PinkLogging
                 _ => null
             };
 
-            var headerBegin = $"[{method.DeclaringType.Name}.{method.Name} {frame.GetFileLineNumber()}:{frame.GetFileColumnNumber()} ";
+            var headerBegin = $"[{DateTime.Now} "
+#if DEBUG
+                + $"{method.DeclaringType.Name}.{method.Name} "
+                + $"{frame.GetFileLineNumber()}:{frame.GetFileColumnNumber()} "
+#endif
+                ;
             var headerEnd = "] ";
             var headerLength = headerBegin.Length + levelName.Length + headerEnd.Length;
 
