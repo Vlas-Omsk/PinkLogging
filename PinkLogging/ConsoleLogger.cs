@@ -14,7 +14,7 @@ namespace PinkLogging
             Dispose();
         }
 
-        protected override void Log(LogLevel level, StackFrame frame, string message)
+        public override void Log(LogLevel level, StackFrame frame, string message)
         {
             var method = GetUserCodeFrame(frame).GetMethod() ?? frame.GetMethod();
 

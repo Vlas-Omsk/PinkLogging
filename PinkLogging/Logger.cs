@@ -25,11 +25,11 @@ namespace PinkLogging
             LogInternal(LogLevel.Trace, message);
         }
 
+        public abstract void Log(LogLevel level, StackFrame frame, string message);
+
         private void LogInternal(LogLevel level, string message)
         {
             Log(level, new StackFrame(2, true), message);
         }
-
-        protected abstract void Log(LogLevel level, StackFrame frame, string message);
     }
 }

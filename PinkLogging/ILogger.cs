@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace PinkLogging
 {
@@ -8,5 +9,6 @@ namespace PinkLogging
         void Warning(string message);
         void Info(string message);
         void Trace(string message);
+        void Log(LogLevel level, StackFrame frame, string message);
     }
 }
