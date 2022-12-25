@@ -52,8 +52,9 @@ namespace PinkLogging
                 Console.Write(headerEnd);
 
                 if (message != null)
-                    Console.WriteLine(message
-                        .Replace(Environment.NewLine, Environment.NewLine + new string(' ', headerLength)));
+                    Console.WriteLine(
+                        message.ReplaceLineEndings(Environment.NewLine + new string(' ', headerLength))
+                    );
                 else
                     Console.WriteLine();
             }, null);
